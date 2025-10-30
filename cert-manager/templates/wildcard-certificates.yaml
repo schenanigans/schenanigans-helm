@@ -1,0 +1,55 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-schenanigans
+  namespace: cert-manager
+spec:
+  secretName: wildcard-schenanigans-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - "*.schenanigans.com"
+    - "schenanigans.com"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-home-schenanigans
+  namespace: cert-manager
+spec:
+  secretName: wildcard-home-schenanigans-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - "*.home.schenanigans.com"
+    - "home.schenanigans.com"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-lab-home-schenanigans
+  namespace: cert-manager
+spec:
+  secretName: wildcard-lab-home-schenanigans-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - "*.lab.home.schenanigans.com"
+    - "lab.home.schenanigans.com"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-kub-lab-home-schenanigans
+  namespace: cert-manager
+spec:
+  secretName: wildcard-kub-lab-home-schenanigans-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - "*.kub.lab.home.schenanigans.com"
+    - "kub.lab.home.schenanigans.com"
