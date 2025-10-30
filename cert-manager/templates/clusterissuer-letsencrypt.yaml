@@ -9,7 +9,11 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-prod
     solvers:
-    - dns01:
+    - selector:
+        dnsZones:
+          - schenanigans.com
+          - home.schenanigans.com
+      dns01:
         cloudflare:
           apiTokenSecretRef:
             name: cloudflare-api-token
@@ -26,7 +30,11 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-staging
     solvers:
-    - dns01:
+    - selector:
+        dnsZones:
+          - schenanigans.com
+          - home.schenanigans.com
+      dns01:
         cloudflare:
           apiTokenSecretRef:
             name: cloudflare-api-token
