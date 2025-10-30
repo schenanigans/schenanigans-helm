@@ -1,82 +1,23 @@
 caddy-ingress-controller:
+  # Replicas
+  replicaCount: 1
+
   # Ingress controller configuration
   ingressController:
-    # Replicas
-    replicas: 1
-
-    # Image configuration
-    image:
-      repository: caddy
-      tag: "2.8.4-builder"
-      pullPolicy: IfNotPresent
-
-    # Resource limits
-    resources:
-      limits:
-        cpu: 500m
-        memory: 512Mi
-      requests:
-        cpu: 100m
-        memory: 128Mi
-
-    # Caddy configuration
     config:
-      # Email for Let's Encrypt
       email: "your-email@example.com"
-
-      # Enable debug logging
       debug: false
+      metrics: true
 
-      # Cloudflare DNS-01 challenge configuration
-      acmeCA: "https://acme-v02.api.letsencrypt.org/directory"
+  # LoadBalancer service
+  loadBalancer:
+    enabled: true
 
-      # Custom Caddyfile configuration
-      # This enables Cloudflare DNS-01 for wildcard certs
-      caddyfile: |
-        {
-          # Global options
-          debug
-
-          # ACME settings
-          acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-        }
-
-    # Environment variables for Cloudflare API token
-    env:
-      - name: CLOUDFLARE_API_TOKEN
-        valueFrom:
-          secretKeyRef:
-            name: cloudflare-api-token
-            key: token
-
-  # Service configuration
-  service:
-    type: LoadBalancer
-    annotations: {}
-    ports:
-      http:
-        port: 80
-        targetPort: 8080
-      https:
-        port: 443
-        targetPort: 8443
-
-  # ServiceAccount
-  serviceAccount:
-    create: true
-    name: caddy-ingress-controller
-
-  # RBAC
-  rbac:
-    create: true
-
-  # Security context
-  securityContext:
-    runAsNonRoot: true
-    runAsUser: 1000
-    fsGroup: 1000
-
-  # Pod security context
-  podSecurityContext:
-    seccompProfile:
-      type: RuntimeDefault
+  # Resources
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi

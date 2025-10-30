@@ -1,0 +1,28 @@
+cert-manager:
+  # Install CRDs
+  installCRDs: true
+
+  # Global settings
+  global:
+    leaderElection:
+      namespace: cert-manager
+
+  # Replicas
+  replicaCount: 1
+
+  # Resources
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      cpu: 100m
+      memory: 128Mi
+
+  # Webhook settings
+  webhook:
+    replicaCount: 1
+
+  # CA injector settings
+  cainjector:
+    replicaCount: 1
