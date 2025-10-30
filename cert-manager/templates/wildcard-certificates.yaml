@@ -53,3 +53,45 @@ spec:
   dnsNames:
     - "*.kub.lab.home.schenanigans.com"
     - "kub.lab.home.schenanigans.com"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-flarelylegal
+  namespace: cert-manager
+spec:
+  secretName: wildcard-flarelylegal-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - "*.flarelylegal.com"
+    - "flarelylegal.com"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-anyauth
+  namespace: cert-manager
+spec:
+  secretName: wildcard-anyauth-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - "*.anyauth.id"
+    - "anyauth.id"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-schenanigans-dev
+  namespace: cert-manager
+spec:
+  secretName: wildcard-schenanigans-dev-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - "*.schenanigans.dev"
+    - "schenanigans.dev"
