@@ -6,7 +6,7 @@ Kubernetes Helm charts for K3s cluster at `tim@10.1.1.50`.
 
 ```
 cert-manager/     Certificate management with Cloudflare DNS-01
-caddy/            Caddy ingress controller
+nginx-ingress/    NGINX ingress controller
 ```
 
 ## Setup Order
@@ -32,15 +32,15 @@ Wait for cert-manager to be ready:
 sudo kubectl get pods -n cert-manager -w
 ```
 
-### 2. Deploy Caddy
+### 2. Deploy NGINX Ingress
 
 ```bash
-# Add Caddy repo
-helm repo add caddy https://caddyserver.github.io/ingress/
+# Add NGINX repo
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
 
-# Install Caddy
-sudo helm install caddy ./caddy -n caddy-system --create-namespace
+# Install NGINX
+sudo helm install nginx-ingress ./nginx-ingress -n ingress-nginx --create-namespace
 ```
 
 ### 3. Create Certificate
@@ -76,7 +76,7 @@ metadata:
   name: example
   namespace: default
 spec:
-  ingressClassName: caddy
+  ingressClassName: nginx
   tls:
   - hosts:
     - app.example.com
@@ -96,6 +96,6 @@ spec:
 
 ## Configuration
 
-Update before deploying:
-- `cert-manager/templates/clusterissuer-letsencrypt.yaml` - Change email
-- `caddy/values.yaml` - Change email
+Already configured:
+- Email: tim@schenanigans.com
+- Cloudflare Zone ID: 01eea10694f944c916c8dbcb9e296aa8

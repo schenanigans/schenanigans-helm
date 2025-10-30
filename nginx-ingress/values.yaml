@@ -1,0 +1,31 @@
+ingress-nginx:
+  controller:
+    # Replicas
+    replicaCount: 1
+
+    # Service configuration
+    service:
+      type: LoadBalancer
+      annotations: {}
+
+    # Resources
+    resources:
+      limits:
+        cpu: 500m
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+    # Metrics
+    metrics:
+      enabled: true
+
+    # Set ingress class name
+    ingressClassResource:
+      name: nginx
+      enabled: true
+      default: false
+
+    # Allow snippet annotations (needed for some advanced configs)
+    allowSnippetAnnotations: true
