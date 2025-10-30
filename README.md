@@ -1,33 +1,33 @@
 # Helm Charts Repository
 
-Kubernetes Helm charts for Rancher Fleet GitOps on K3s cluster at `tim@10.1.1.50`.
+Kubernetes Helm charts for K3s cluster at `tim@10.1.1.50`.
 
-## Structure
+## Charts
 
 ```
-traefik/          Traefik ingress controller
-fleet.yaml        Root Fleet configuration
+caddy/            Caddy ingress controller with Cloudflare DNS-01
 ```
 
-## Workflow
+## Caddy Setup
 
-```bash
-# Make changes locally
-vim traefik/values.yaml
+1. Create Cloudflare API token at https://dash.cloudflare.com/profile/api-tokens
+   - Template: "Edit zone DNS"
+   - Permissions: Zone > DNS > Edit, Zone > Zone > Read
 
-# Commit and push
-git add .
-git commit -m "Update config"
-git push
-
-# Fleet auto-deploys within ~15 seconds
-```
-
-## Status
-
+2. Create secret on cluster:
 ```bash
 ssh tim@10.1.1.50
-sudo kubectl get gitrepo -n fleet-default
-sudo kubectl get bundles -n fleet-default
-sudo kubectl get pods -n kube-system
+sudo kubectl create namespace caddy-system
+sudo kubectl create secret generic cloudflare-api-token \
+  --from-literal=token='YOUR_CLOUDFLARE_TOKEN' \
+  -n caddy-system
+```
+
+3. Update email in `caddy/values.yaml`
+
+4. Deploy via Rancher UI or Helm:
+```bash
+ssh tim@10.1.1.50
+cd /path/to/charts
+sudo helm install caddy ./caddy -n caddy-system
 ```

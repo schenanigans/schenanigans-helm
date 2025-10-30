@@ -1,0 +1,11 @@
+apiVersion: v2
+name: caddy
+description: Caddy ingress controller with Cloudflare DNS-01
+type: application
+version: 1.0.0
+appVersion: "2.8.4"
+
+dependencies:
+  - name: caddy-ingress-controller
+    version: "1.2.0"
+    repository: https://caddyserver.github.io/ingress/
