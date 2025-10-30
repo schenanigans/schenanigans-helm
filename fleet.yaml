@@ -8,6 +8,6 @@ helm:
   # Update dependencies before installing
   takeOwnership: true
 
-# Target clusters (empty means all clusters)
+# Target local cluster
 targets:
-  - clusterSelector: {}
+  - clusterName: local

@@ -7,5 +7,5 @@ appVersion: "3.3.6"
 
 dependencies:
   - name: traefik
-    version: "34.2.1"
+    version: "37.2.0"
     repository: https://traefik.github.io/charts
