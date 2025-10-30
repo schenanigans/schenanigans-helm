@@ -13,6 +13,9 @@ spec:
         dnsZones:
           - schenanigans.com
           - home.schenanigans.com
+          - flarelylegal.com
+          - anyauth.id
+          - schenanigans.dev
       dns01:
         cloudflare:
           apiTokenSecretRef:
@@ -34,6 +37,9 @@ spec:
         dnsZones:
           - schenanigans.com
           - home.schenanigans.com
+          - flarelylegal.com
+          - anyauth.id
+          - schenanigans.dev
       dns01:
         cloudflare:
           apiTokenSecretRef:
