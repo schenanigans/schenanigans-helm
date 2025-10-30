@@ -9,18 +9,18 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-prod
     solvers:
-    - selector:
-        dnsZones:
-          - schenanigans.com
-          - home.schenanigans.com
-          - flarelylegal.com
-          - anyauth.id
-          - schenanigans.dev
-      dns01:
-        cloudflare:
-          apiTokenSecretRef:
-            name: cloudflare-api-token
-            key: token
+      - selector:
+          dnsZones:
+            - schenanigans.com
+            - home.schenanigans.com
+            - flarelylegal.com
+            - anyauth.id
+            - schenanigans.dev
+        dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-token
+              key: token
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -33,15 +33,15 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-staging
     solvers:
-    - selector:
-        dnsZones:
-          - schenanigans.com
-          - home.schenanigans.com
-          - flarelylegal.com
-          - anyauth.id
-          - schenanigans.dev
-      dns01:
-        cloudflare:
-          apiTokenSecretRef:
-            name: cloudflare-api-token
-            key: token
+      - selector:
+          dnsZones:
+            - schenanigans.com
+            - home.schenanigans.com
+            - flarelylegal.com
+            - anyauth.id
+            - schenanigans.dev
+        dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-token
+              key: token

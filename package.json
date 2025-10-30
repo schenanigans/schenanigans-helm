@@ -1,0 +1,26 @@
+{
+  "name": "schenanigans-helm",
+  "version": "1.0.0",
+  "description": "Kubernetes Helm charts for K3s cluster",
+  "private": true,
+  "scripts": {
+    "prepare": "husky",
+    "lint": "prettier --check '**/*.{yaml,yml,md}'",
+    "lint:yaml": "yamllint .",
+    "format": "prettier --write '**/*.{yaml,yml,md}'",
+    "changelog": "git-cliff -o CHANGELOG.md"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
+    "prettier": "^3.3.3"
+  },
+  "lint-staged": {
+    "*.{yaml,yml}": [
+      "prettier --write"
+    ],
+    "*.md": [
+      "prettier --write"
+    ]
+  }
+}

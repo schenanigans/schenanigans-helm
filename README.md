@@ -28,6 +28,7 @@ sudo helm install cert-manager ./cert-manager -n cert-manager --create-namespace
 ```
 
 Wait for cert-manager to be ready:
+
 ```bash
 sudo kubectl get pods -n cert-manager -w
 ```
@@ -46,6 +47,7 @@ sudo helm install nginx-ingress ./nginx-ingress -n ingress-nginx --create-namesp
 ### 3. Create Certificate
 
 Example wildcard certificate:
+
 ```yaml
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -63,6 +65,7 @@ spec:
 ```
 
 Apply:
+
 ```bash
 sudo kubectl apply -f certificate.yaml
 ```
@@ -78,24 +81,25 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-  - hosts:
-    - app.example.com
-    secretName: wildcard-tls
+    - hosts:
+        - app.example.com
+      secretName: wildcard-tls
   rules:
-  - host: app.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: my-service
-            port:
-              number: 80
+    - host: app.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: my-service
+                port:
+                  number: 80
 ```
 
 ## Configuration
 
 Already configured:
+
 - Email: tim@schenanigans.com
 - Cloudflare Zone ID: 01eea10694f944c916c8dbcb9e296aa8
