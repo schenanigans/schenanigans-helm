@@ -1,0 +1,28 @@
+# Fleet configuration for Traefik chart
+# This overrides the root fleet.yaml for this specific chart
+
+defaultNamespace: kube-system
+
+helm:
+  releaseName: traefik
+  chart: "."
+  # Take over existing Helm release managed by Rancher
+  takeOwnership: true
+  # Wait for resources to be ready
+  waitForJobs: true
+  # Max wait time for Helm operations
+  timeoutSeconds: 300
+
+# Diff options to show changes before applying
+diff:
+  comparePatches:
+    - apiVersion: apps/v1
+      kind: Deployment
+      operations:
+        - {"op": "remove", "path": "/status"}
+
+# Target specific clusters or labels
+targets:
+  - clusterSelector:
+      matchLabels: {}
+    # You can add specific namespace or cluster overrides here

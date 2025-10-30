@@ -1,0 +1,14 @@
+# Reference files (cluster exports, backups)
+_reference/
+
+# Helm
+*.tgz
+charts/
+Chart.lock
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store

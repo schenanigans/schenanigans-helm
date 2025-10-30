@@ -1,0 +1,13 @@
+# Fleet configuration for Rancher GitOps
+# This file tells Fleet how to deploy the charts in this repository
+
+defaultNamespace: kube-system
+
+# Helm chart configuration
+helm:
+  # Update dependencies before installing
+  takeOwnership: true
+
+# Target clusters (empty means all clusters)
+targets:
+  - clusterSelector: {}
